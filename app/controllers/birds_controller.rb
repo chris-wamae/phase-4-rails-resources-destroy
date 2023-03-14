@@ -50,4 +50,13 @@ class BirdsController < ApplicationController
     params.permit(:name, :species, :likes)
   end
 
+  def destroy
+    bird = Bird.find_by(id:params[:id])
+    if bird
+      bird.destroy
+      head :no_content
+    else 
+      render json: {error: "Not Found"}, status: :not_found
+  end
+
 end
