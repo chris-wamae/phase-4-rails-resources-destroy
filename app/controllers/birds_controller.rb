@@ -44,12 +44,6 @@ class BirdsController < ApplicationController
     end
   end
 
-  private
-
-  def bird_params
-    params.permit(:name, :species, :likes)
-  end
-
   def destroy
     bird = Bird.find_by(id:params[:id])
     if bird
@@ -58,5 +52,14 @@ class BirdsController < ApplicationController
     else 
       render json: {error: "Not Found"}, status: :not_found
   end
+end
+
+  private
+
+  def bird_params
+    params.permit(:name, :species, :likes)
+  end
+
+
 
 end
